@@ -1,0 +1,56 @@
+--USUARIO
+-----------------
+id (PK)
+nombre
+email
+-----------------
+        |
+        | 1
+        |
+        | *
+--RESERVA
+-----------------
+id (PK)
+fecha
+hora_inicio
+hora_fin
+estado
+usuario_id (FK)
+mesa_id (FK)
+-----------------
+        *
+        |
+        | 1
+        |
+--MESA
+-----------------
+id (PK)
+numero
+capacidad
+restaurante_id (FK)
+-----------------
+        *
+        |
+        | 1
+        |
+--RESTAURANTE
+-----------------
+id (PK)
+nombre
+direccion
+hora_apertura
+hora_cierre
+-----------------
+        |
+        | 1
+        |
+        | *
+--RESEÑA
+-----------------
+id (PK)
+calificacion
+comentario
+fecha
+usuario_id (FK)
+restaurante_id (FK)
+-----------------
