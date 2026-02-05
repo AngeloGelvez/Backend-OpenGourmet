@@ -1,5 +1,6 @@
 package com.backend.opengourmet.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,10 +23,12 @@ public class UsuarioEntity {
     @Column(name = "email_usuarios", unique = true)
     private String email;
 
-    @OneToMany(cascade = CascadeType.REMOVE) //Eliminacion en cascada
+    @JsonBackReference
+    @OneToMany(mappedBy = "usuarioEntity",cascade = CascadeType.REMOVE, orphanRemoval = true) //Eliminacion en cascada
     private List<ReservaEntity> reservas;
 
-    @OneToMany(cascade = CascadeType.REMOVE) //Eliminacion en cascada
+    @JsonBackReference
+    @OneToMany(mappedBy = "usuarioEntity" ,cascade = CascadeType.REMOVE, orphanRemoval = true) //Eliminacion en cascada
     private List<ResenaEntity> resenas;
 
     public UsuarioEntity() {}

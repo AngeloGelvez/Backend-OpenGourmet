@@ -6,6 +6,7 @@ import com.backend.opengourmet.service.impl.ServiceCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,16 @@ public class ReservaService implements ServiceCrud<ReservaEntity> {
 
     @Override
     public ReservaEntity crear(ReservaEntity entidad) {
+
+        //VALIDAMOS QUE LA HORA INICIO SEA MENOR QUE LA HORA DE FIN DE LA RESERVA
+        if(entidad.getHoraInicio().getHour() > entidad.getHoraFin().getHour()) {
+            throw new Error("La reserva tiene mal el horario de reserva.");
+
+            //VALIDAMOS QUE LA FECHA DE RESERVA NO SEA ANTES QUE LA FECHA ACTUAL(HOY)
+        }else if(entidad.getFecha().isBefore(LocalDate.now())) {
+            throw new Error("La reserva tiene la fecha de reserva mucho antes que hoy.");
+        }
+
         return this.reservaRepository.save(entidad);
     }
 

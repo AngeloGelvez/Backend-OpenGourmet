@@ -27,6 +27,7 @@ public class ResenaController {
     public ResponseEntity<Object> todasResenas() {
         try{
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
+            ResponseApi.setResponseJson("Mensaje", "Resenas Listas");
             ResponseApi.setResponseJson("Contenido", this.resenaService.todos());
 
             return ResponseEntity
@@ -34,7 +35,8 @@ public class ResenaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -56,7 +58,8 @@ public class ResenaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -76,7 +79,8 @@ public class ResenaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -89,13 +93,15 @@ public class ResenaController {
         try {
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
             ResponseApi.setResponseJson("Mensaje", this.resenaService.eliminarPorId(id));
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(ResponseApi.responseJson);
         } catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)

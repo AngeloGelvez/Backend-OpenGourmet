@@ -1,5 +1,7 @@
 package com.backend.opengourmet.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -22,10 +24,12 @@ public class ResenaEntity {
     @Column(name = "fecha_resenas")
     private LocalDate fecha;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "fk_usuario")
     private UsuarioEntity usuarioEntity;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "fk_restaurante")
     private RestauranteEntity restauranteEntity;

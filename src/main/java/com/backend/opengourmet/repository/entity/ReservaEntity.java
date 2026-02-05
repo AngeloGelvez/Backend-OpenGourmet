@@ -1,5 +1,6 @@
 package com.backend.opengourmet.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -33,10 +34,12 @@ public class ReservaEntity {
         CANCELADO // 2
     };
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "fk_usuario")
     private UsuarioEntity usuarioEntity;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "fk_mesa")
     private MesaEntity mesaEntity;

@@ -23,6 +23,7 @@ public class MesaController {
     public ResponseEntity<Object> todasMesas() {
         try{
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
+            ResponseApi.setResponseJson("Mensaje", "Mesas listas");
             ResponseApi.setResponseJson("Contenido", this.mesaService.todos());
 
             return ResponseEntity
@@ -30,7 +31,8 @@ public class MesaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -42,6 +44,7 @@ public class MesaController {
     public ResponseEntity<Object> mesaPorId(@PathVariable Long id) {
         try{
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
+            ResponseApi.setResponseJson("Mensaje", "Mesa Id");
             ResponseApi.setResponseJson("Contenido", this.mesaService.buscarPorId(id));
 
             return ResponseEntity
@@ -49,7 +52,8 @@ public class MesaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -70,7 +74,8 @@ public class MesaController {
                     .body(ResponseApi.responseJson);
         }catch(Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -90,7 +95,8 @@ public class MesaController {
                     .body(ResponseApi.responseJson);
         }catch(Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -103,13 +109,15 @@ public class MesaController {
         try{
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
             ResponseApi.setResponseJson("Mensaje", this.mesaService.eliminarPorId(id));
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)

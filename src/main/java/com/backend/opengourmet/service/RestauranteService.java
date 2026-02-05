@@ -39,11 +39,6 @@ public class RestauranteService implements ServiceCrud<RestauranteEntity> {
 
     @Override
     public RestauranteEntity crear(RestauranteEntity entidad) {
-        /*
-        if(entidad.getHoraApertura().getHour() > entidad.getHoraCierre().getHour()) {
-
-        }
-        */
         return this.restauranteRepository.save(entidad);
     }
 

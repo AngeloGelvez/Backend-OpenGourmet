@@ -19,6 +19,7 @@ public class RestauranteController {
     public ResponseEntity<Object> todosRestaurantes() {
         try{
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
+            ResponseApi.setResponseJson("Mensaje", "Restaurantes listas");
             ResponseApi.setResponseJson("Contenido", this.restauranteService.todos());
 
             return ResponseEntity
@@ -26,7 +27,8 @@ public class RestauranteController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -38,6 +40,7 @@ public class RestauranteController {
     public ResponseEntity<Object> restaurantePorId(@PathVariable Long id) {
         try {
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
+            ResponseApi.setResponseJson("Mensaje", "Restaurante ID");
             ResponseApi.setResponseJson("Contenido", this.restauranteService.buscarPorId(id));
 
             return ResponseEntity
@@ -45,7 +48,8 @@ public class RestauranteController {
                     .body(ResponseApi.responseJson);
         }catch(Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -65,7 +69,8 @@ public class RestauranteController {
                     .body(ResponseApi.responseJson);
         }catch(Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -85,7 +90,8 @@ public class RestauranteController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -98,13 +104,15 @@ public class RestauranteController {
         try {
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
             ResponseApi.setResponseJson("Mensaje", this.restauranteService.eliminarPorId(id));
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(ResponseApi.responseJson);
         }catch(Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)

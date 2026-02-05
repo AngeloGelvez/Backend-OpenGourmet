@@ -1,5 +1,6 @@
 package com.backend.opengourmet.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -26,7 +27,7 @@ public class RestauranteEntity {
     @Column(name = "hora_cierre_restaurantes")
     private LocalTime horaCierre;
 
-    @OneToMany
+    @OneToMany(mappedBy = "restauranteEntity", orphanRemoval = true)
     private List<ResenaEntity> resenas;
 
     public RestauranteEntity() {}

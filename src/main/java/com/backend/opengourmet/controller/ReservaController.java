@@ -27,6 +27,7 @@ public class ReservaController {
     public ResponseEntity<Object> todasReservas() {
         try {
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
+            ResponseApi.setResponseJson("Mensaje", "Reservas listas");
             ResponseApi.setResponseJson("Contenido", this.reservaService.todos());
 
             return ResponseEntity
@@ -34,7 +35,8 @@ public class ReservaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -46,6 +48,7 @@ public class ReservaController {
     public ResponseEntity<Object> reservaPorId(@PathVariable Long id) {
         try {
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
+            ResponseApi.setResponseJson("Mensaje", "Reserva ID");
             ResponseApi.setResponseJson("Contenido", this.reservaService.buscarPorId(id));
 
             return ResponseEntity
@@ -53,7 +56,8 @@ public class ReservaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -75,7 +79,8 @@ public class ReservaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -95,7 +100,8 @@ public class ReservaController {
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
@@ -108,13 +114,15 @@ public class ReservaController {
         try {
             ResponseApi.setResponseJson("Estado", HttpStatus.OK);
             ResponseApi.setResponseJson("Mensaje", this.reservaService.eliminarPorId(id));
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(ResponseApi.responseJson);
         }catch (Error err) {
             ResponseApi.setResponseJson("Estado", HttpStatus.EXPECTATION_FAILED);
-            ResponseApi.setResponseJson("Contenido", err.getMessage());
+            ResponseApi.setResponseJson("Mensaje", err.getMessage());
+            ResponseApi.setResponseJson("Contenido", null);
 
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
